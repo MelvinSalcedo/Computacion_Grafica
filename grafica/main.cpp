@@ -8,7 +8,7 @@
 
 #define pi 3.1416
 #define fin 40
-
+#include <vector>
 using namespace std;
 
 int x1=0,x2=0,y_1=3,y2=3;
@@ -87,73 +87,20 @@ public:
 	double x;
 	double y;
 	punto(){};
-	punto(double x_,double y_);
+
+	punto(double x_,double y_){
+        x=x_;
+        y=y_;
+	}
 };
-punto::punto(double x_,double y_){
-	x=x_;
-	y=y_;
-}
-
-void circunferencia(){
-	int tam=lados+1;
-	punto * pt =new punto[tam];
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0,1.0,1.0);
-	glBegin(GL_POINTS);
-	//for(double i=0.0;i<6.29;i+=0.1)
-	for(double i=0.0;i<360.0;i+=0.1){
-		calx=radio*cos((i*pi)/180);
-		caly=radio*sin((i*pi)/180);
-		glVertex2f(calx,caly);
-		//cout<<"calx "<<calx<<" i "<<i<<" cos(i) "<<cos(i)<<endl;
-		//cout<<"caly "<<caly<<" i "<<i<<" sen(i) "<<sin(i)<<endl;
-	}
-	glEnd();
-
-	punto p;
-	double i;
-	int j;
-	if (lados==3){
-		for(i=90.0,j=0;i<360.0;i+=360/lados*1.0,j++){
-			p.x=radio*cos((i*pi)/180);
-			p.y=radio*sin((i*pi)/180);
-			pt[j]=p;
-		}
-		pt[j]=pt[0];
-		for(int i=0;i<tam-1;i++){
-            glColor3f(0.0,1.0,1.0);
-			glBegin ( GL_LINES ) ;
-				glVertex2f ( pt[i+1].x,pt[i+1].y) ;
-				glVertex2f ( pt[i].x,pt[i].y) ;
-			glEnd ( ) ;
-		}
-	}
-	if(lados>3){
-		for(i=0.0,j=0;i<360.0;i+=360/lados*1.0,j++){
-			p.x=radio*cos((i*pi)/180);
-			p.y=radio*sin((i*pi)/180);
-			pt[j]=p;
-		}
-		pt[j]=pt[0];
-		for(int i=0;i<tam-1;i++){
-            glColor3f(0.0,1.0,1.0);
-			glBegin ( GL_LINES ) ;
-				glVertex2f ( pt[i].x,pt[i].y) ;
-				glVertex2f ( pt[i+1].x,pt[i+1].y) ;
-
-			glEnd ( ) ;
-		}
 
 
-	}
-	glFlush();
-}
 /**_________________________________**/
 
 void Poligono_Regular(){
     int tam=lados+1;
 	punto * pt =new punto[tam];
-
+    vector<punto> vPunto;
 	punto p;
 	double i;
 	int j;
@@ -161,14 +108,15 @@ void Poligono_Regular(){
 		for(i=90.0,j=0;i<360.0;i+=360/lados*1.0,j++){
 			p.x=radio*cos((i*pi)/180);
 			p.y=radio*sin((i*pi)/180);
+			vPunto.push_back(p);
 			pt[j]=p;
 		}
 		pt[j]=pt[0];
 		for(int i=0;i<tam-1;i++){
             glColor3f(0.0,1.0,1.0);
 			glBegin ( GL_LINES ) ;
-				glVertex2f ( pt[i+1].x,pt[i+1].y) ;
-				glVertex2f ( pt[i].x,pt[i].y) ;
+            glVertex2f ( pt[i+1].x,pt[i+1].y) ;
+            glVertex2f ( pt[i].x,pt[i].y) ;
 			glEnd ( ) ;
 		}
 	}
