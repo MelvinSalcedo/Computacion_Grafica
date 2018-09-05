@@ -251,7 +251,7 @@
 1341006772 c:\program files (x86)\codeblocks\mingw\include\getopt.h
 	<_mingw.h>
 
-1536150419 source:c:\users\z\documents\github\computacion_grafica\grafica\main.cpp
+1536151127 source:c:\users\z\documents\github\computacion_grafica\grafica\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<stdlib.h>

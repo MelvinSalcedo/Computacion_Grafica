@@ -16,7 +16,7 @@ using namespace std;
 /**_________________________________**/
 
 double calx=0.0,caly=0.0;
-int radio=5,lados=5;
+int radio=5,num_lados=100;
 
 class punto{
 public:
@@ -31,12 +31,12 @@ public:
 
 
 void Poligono_Regular(){
-    int tam=lados+1;
+    int tam=num_lados+1;
     vector<punto> vPunto;
 	punto _p;
 	double i;
-    if (lados==3){
-		for(i=90;i<360;i+=360/lados){
+    if (num_lados==3){
+		for(i=90;i<360;i+=360/num_lados){
             //cout<<"i: "<<i<<endl;
 			_p.x=radio*cos((i*pi)/180);
 			_p.y=radio*sin((i*pi)/180);
@@ -52,9 +52,9 @@ void Poligono_Regular(){
 			glEnd ( ) ;
 		}
 	}
-	if(lados>3){
-		for(i=0 ; i<360 ; i+=360/lados){
-            cout<<"i: "<<i<<endl;
+	if(num_lados>3){
+		for(i=0; i<360; i+=360.0/num_lados){
+            //cout<<"i: "<<i<<endl;
 			_p.x=radio*cos((i*pi)/180);
 			_p.y=radio*sin((i*pi)/180);
 			vPunto.push_back(_p);
@@ -127,7 +127,7 @@ void dibujar_linea(GLint x0,GLint y0, GLint xf, GLint yf){
 
 void linea(){
 	glClear(GL_COLOR_BUFFER_BIT);
-	GLint x0=-10,y0=-5,xf=10,yf=15;
+	GLint x0=-5,y0=0,xf=10,yf=15;
 	dibujar_linea(x0,y0,xf,yf);
 	//Algoritmo_incremental_basico( x0, y0,  xf,  yf);
 	Algoritmo_punto_medio( x0, y0,  xf,  yf);
@@ -150,8 +150,11 @@ int main ( int argc , char ** argv ){
     glutInitWindowSize ( 600,600 ) ;
     glutCreateWindow ( "Computacion Grafica" ) ;
     Inicio() ;
-    //glutDisplayFunc (linea) ;
-    glutDisplayFunc (Poligono_Regular) ;
+    glutDisplayFunc (linea) ;
+    //glutDisplayFunc (Poligono_Regular) ;
+
     glutMainLoop () ;
+
+
 }
 
