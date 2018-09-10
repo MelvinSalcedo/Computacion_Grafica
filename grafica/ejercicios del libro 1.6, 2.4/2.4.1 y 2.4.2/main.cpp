@@ -11,57 +11,86 @@
 #include <vector>
 
 using namespace std;
-#include <stdio.h>
-#include <iostream>
-#include <cmath>
-#include <GL/glut.h>
-using namespace std;
 
-int w_width = 640;
-int w_height = 480;
-const double PI=3.14159265358979323846;
-double radius;
-int n_sides;
 
-void draw_polygon(double radius, int n_sides) {
-	if(n_sides<3) return;
-	glBegin(GL_LINE_STRIP);
-	for(int i=0;i<=n_sides;i++){
-		double angle=i*2*PI/n_sides;
-		glVertex2d(w_width/2+radius*cos(angle),w_height/2+radius*sin(angle));
+/**_________________________________**/
+
+double calx=0.0,caly=0.0;
+int radio=5,num_lados=100;
+
+class punto{
+public:
+	double x;
+	double y;
+	punto(){};
+	punto(double x_,double y_){
+        x=x_;
+        y=y_;
 	}
-	glEnd();
+};
+
+
+void Poligono_Regular(){
+    int tam=num_lados+1;
+    vector<punto> vPunto;
+	punto _p;
+	double i;
+    if (num_lados==3){
+		for(i=90;i<360;i+=360/num_lados){
+            //cout<<"i: "<<i<<endl;
+			_p.x=radio*cos((i*pi)/180);
+			_p.y=radio*sin((i*pi)/180);
+			vPunto.push_back(_p);
+		}
+		vPunto.push_back(vPunto[0]);
+
+		for(int i=0;i<tam-1;i++){
+            glColor3f(0.0,1.0,1.0);
+			glBegin ( GL_LINES ) ;
+            glVertex2f ( vPunto[i+1].x,vPunto[i+1].y) ;
+            glVertex2f ( vPunto[i].x,vPunto[i].y) ;
+			glEnd ( ) ;
+		}
+	}
+	if(num_lados>3){
+		for(i=0; i<360; i+=360.0/num_lados){
+            //cout<<"i: "<<i<<endl;
+			_p.x=radio*cos((i*pi)/180);
+			_p.y=radio*sin((i*pi)/180);
+			vPunto.push_back(_p);
+		}
+		vPunto.push_back(vPunto[0]);
+		for(int i=0;i<tam-1;i++){
+            glColor3f(0.0,1.0,1.0);
+			glBegin ( GL_LINES ) ;
+            glVertex2f ( vPunto[i+1].x,vPunto[i+1].y) ;
+            glVertex2f ( vPunto[i].x,vPunto[i].y) ;
+			glEnd ( ) ;
+		}
+	}
+	glFlush();
+
 }
 
-void myInit (void) {
-	glClearColor(1.0, 1.0, 1.0, 0.0);
-	glColor3f(0.0f, 0.0f, 0.0f);
-	glPointSize(4.0);
+
+void Inicio(){
 	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluOrtho2D(0.0, 640.0, 0.0, 480.0);
+	glClearColor(0.0,0.0,0.0,0.0);
+	gluOrtho2D(-20,20,-20,20);
 }
 
-void myDisplay(void) {
-	glClear (GL_COLOR_BUFFER_BIT);
-	glColor3f (0.0, 0.0, 0.0);
-	glPointSize(1.0);
-	draw_polygon(radius, n_sides);
-	glFlush ();
-}
 
-int main(int argc, char** argv) {
-	cout << "Enter radius : "; cin >> radius;
-	cout << "Enter the number of edges : "; cin >> n_sides;
 
-	glutInit(&argc, argv);
-	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
-	glutInitWindowSize (w_width, w_height);
-	glutInitWindowPosition (100, 150);
-	glutCreateWindow ("Polygon with radius and # edges");
-	glutDisplayFunc(myDisplay);
-	myInit ();
-	glutMainLoop();
+int main ( int argc , char ** argv ){
+    glutInit (&argc,argv ) ;
+    glutInitDisplayMode( GLUT_SINGLE | GLUT_RGB ) ;
+    glutInitWindowPosition (200 , 100) ;
+    glutInitWindowSize ( 600,600 ) ;
+    glutCreateWindow ( "Computacion Grafica" ) ;
+    Inicio() ;
+    glutDisplayFunc (Poligono_Regular) ;
 
-	return 0;
+    glutMainLoop () ;
+
+
 }

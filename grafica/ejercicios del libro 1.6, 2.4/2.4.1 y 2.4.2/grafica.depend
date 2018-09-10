@@ -281,3 +281,17 @@
 	<stdarg.h>
 	<sys/types.h>
 
+1536568556 source:c:\users\z\documents\github\computacion_grafica\grafica\ejercicios del libro 1.6, 2.4\2.4.1 y 2.4.2\main.cpp
+	<windows.h>
+	<GL/glut.h>
+	<stdlib.h>
+	<stdlib.h>
+	<math.h>
+	<iostream>
+	<unistd.h>
+	<vector>
+	<stdio.h>
+	<iostream>
+	<cmath>
+	<GL/glut.h>
+
