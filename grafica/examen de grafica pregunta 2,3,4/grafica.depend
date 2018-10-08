@@ -342,7 +342,7 @@
 
 1536627623 c:\users\z\documents\github\computacion_grafica\grafica\circunferencia, elipse\include\tortuga.h
 
-1538967816 source:c:\users\z\documents\github\computacion_grafica\grafica\examen de grafica pregunta 2,3,4\main.cpp
+1538969942 source:c:\users\z\documents\github\computacion_grafica\grafica\examen de grafica pregunta 2,3,4\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<stdlib.h>
@@ -352,6 +352,7 @@
 	<unistd.h>
 	"Linea3D.h"
 	"Parabola.h"
+	"Ejercicio2.h"
 
 1538959451 c:\users\z\documents\github\computacion_grafica\grafica\examen de grafica pregunta 2,3,4\include\circunferencia.h
 	<windows.h>
@@ -364,4 +365,9 @@
 	<windows.h>
 	<iostream>
 	<algorithm>
+
+1538969942 c:\users\z\documents\github\computacion_grafica\grafica\examen de grafica pregunta 2,3,4\include\ejercicio2.h
+	<windows.h>
+	<GL/glut.h>
+	<stdlib.h>
 

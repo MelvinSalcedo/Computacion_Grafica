@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include "Linea3D.h"
 #include "Parabola.h"
+#include "Ejercicio2.h"
 using namespace std;
 
 double rotate_y=0;
@@ -37,6 +38,9 @@ void Llamadas(){
 
     //Parabola a;
     //a.parabola_punto_medio();
+
+    //Ejercicio2 a;
+    //a.llamada();
 
   glBegin(GL_LINES);
     glColor3f(1, 0, 0); glVertex3f(0, 0, 0); glVertex3f(100, 0, 0);
