@@ -383,8 +383,15 @@
 1541389460 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\vector_tools.h
 	<math.h>
 
-1541389728 source:c:\users\z\documents\github\computacion_grafica\grafica\tortuga\src\camera.cpp
+1541390356 source:c:\users\z\documents\github\computacion_grafica\grafica\tortuga\src\camera.cpp
 	"camera.h"
+	<windows.h>
+	<GL/glut.h>
+	<stdlib.h>
+	<stdlib.h>
+	<math.h>
+	<iostream>
+	<unistd.h>
 	<GL/glut.h>
 	"camera.h"
 	<stdio.h>

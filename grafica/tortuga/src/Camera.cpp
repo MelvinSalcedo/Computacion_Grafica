@@ -1,5 +1,11 @@
 #include "camera.h"
-
+#include <windows.h>
+#include <GL/glut.h>
+#include <stdlib.h>
+#include <stdlib.h>
+#include <math.h>
+#include <iostream>
+#include <unistd.h>
 #include <GL/glut.h>
 #include "camera.h"
 #include <stdio.h>      /* printf, scanf, NULL */

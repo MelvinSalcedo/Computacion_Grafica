@@ -118,9 +118,10 @@ void mouse(int button, int state, int x, int y){
 
 void display()
 {
-	glClearColor(1.0,1.0,1.0,0.0);
+	glClearColor(1.0,0.1,0.0,1.0);
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 	glColor3f(0.0,0.0,0.0);
+
 	glutWireTorus(0.05,0.15,20,20);
 	glutSwapBuffers();
 }
