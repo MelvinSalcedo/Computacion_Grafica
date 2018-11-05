@@ -342,7 +342,7 @@
 
 1536627623 c:\users\z\documents\github\computacion_grafica\grafica\circunferencia, elipse\include\tortuga.h
 
-1536628227 source:c:\users\z\documents\github\computacion_grafica\grafica\tortuga\main.cpp
+1541389496 source:c:\users\z\documents\github\computacion_grafica\grafica\tortuga\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<stdlib.h>
@@ -350,27 +350,47 @@
 	<math.h>
 	<iostream>
 	<unistd.h>
-	"PoligonoRegular.h"
-	"Elipse.h"
-	"Linea.h"
-	"Hiperbola.h"
-	"Tortuga.h"
-	"Circunferencia.h"
+	"camera.h"
+	<cstdio>
+	"vector_tools.h"
 
-1536542281 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\poligonoregular.h
+1541388063 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\poligonoregular.h
 	<vector>
 	<iostream>
 	<vector>
 
-1536541589 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\elipse.h
+1541388063 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\elipse.h
 	<windows.h>
 	<GL/glut.h>
 
-1536542552 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\linea.h
+1541388063 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\linea.h
 
-1536543079 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\hiperbola.h
+1541388063 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\hiperbola.h
 
-1536627623 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\tortuga.h
+1541388624 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\tortuga.h
+	<windows.h>
+	<GL/glut.h>
+	<cstdio>
+	<vector>
+	<cmath>
+	<string.h>
+	<iostream>
 
-1536624688 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\circunferencia.h
+1541388063 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\circunferencia.h
+
+1541389585 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\camera.h
+
+1541389460 c:\users\z\documents\github\computacion_grafica\grafica\tortuga\include\vector_tools.h
+	<math.h>
+
+1541389728 source:c:\users\z\documents\github\computacion_grafica\grafica\tortuga\src\camera.cpp
+	"camera.h"
+	<GL/glut.h>
+	"camera.h"
+	<stdio.h>
+	<stdlib.h>
+	"vector_tools.h"
+
+1541389460 source:c:\users\z\documents\github\computacion_grafica\grafica\tortuga\src\vector_tools.cpp
+	"vector_tools.h"
 

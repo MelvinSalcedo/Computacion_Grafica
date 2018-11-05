@@ -1,208 +1,152 @@
 #include <windows.h>
 #include <GL/glut.h>
-#include <cstdio>
-#include <vector>
-#include <cmath>
-#include <string.h>
+#include <stdlib.h>
+#include <stdlib.h>
+#include <math.h>
 #include <iostream>
+#include <unistd.h>
 
-using namespace std;
 
-int np = 0;
-float px [10000];
-float py [10000];
-float pz [10000];
+#include "camera.h"
+#include <cstdio>
+#include "vector_tools.h"
 
-GLdouble mModel[16];
+static camera *LOCAL_MyCamera;
+static int old_x, old_y;
 
-void display(void);
-void reshape(int width, int height);
-void keyboard(unsigned char key, int x, int y);
-void turtle(int sides,float radio,int x,int y);
-void draw();
 
-void addPointToTrace() {
-	int i;
-	GLdouble m[16];
-	glGetDoublev (GL_MODELVIEW_MATRIX, m);
-	// print the matrix
-	printf ("\nMatrix:\n");
-	for (i = 0; i < 4; i++) {
-	printf ("Row %i: %f \t%f \t%f \t%f \n",
-	i+1, m[i+0],m[i+4],m[i+8],m[i+12]);
+void Check(int x, int y){
+	float rot_x, rot_y;
+	rot_y = (float)(old_y - y);
+	rot_x = (float)(x - old_x);
+	rotateLat( LOCAL_MyCamera, rot_y * DEGREE_TO_RAD );
+	rotateLong( LOCAL_MyCamera, rot_x * DEGREE_TO_RAD );
+	old_y = y;
+	old_x = x;
+	glutPostRedisplay();
+}
+
+void MouseMotion(int x, int y){
+	old_y = y;
+	old_x = x;
+}
+
+
+static void SpecialKey ( unsigned char key, int x, int y ){
+	switch(key) {
+	case 'a':
+		glutPassiveMotionFunc(MouseMotion);
+		LOCAL_MyCamera->camMovimiento = CAM_STOP;
+		break;
+	case 's':
+		glutPassiveMotionFunc(Check);
+		LOCAL_MyCamera->camMovimiento = CAM_CHECK;
+		break;
+	case 'd':
+		glutPassiveMotionFunc(MouseMotion);
+		LOCAL_MyCamera->camMovimiento = CAM_PASEAR;
+		LOCAL_MyCamera->camAtY = 0;
+		LOCAL_MyCamera->camViewY = 0;
+		SetDependentParametersCamera( LOCAL_MyCamera );
+		break;
+	case 'w': //Reset Camera
+		LOCAL_MyCamera->camAtX =0;
+		LOCAL_MyCamera->camAtY =0;
+		LOCAL_MyCamera->camAtZ =0;
+		LOCAL_MyCamera->camViewX = 0;
+		LOCAL_MyCamera->camViewY = 1;
+		LOCAL_MyCamera->camViewZ = -3;
+		SetDependentParametersCamera( LOCAL_MyCamera );
+		break;
+	default:
+		printf("key %d %c X %d Y %d\n", key, key, x, y );
 	}
-	// if is the first point
-	if (np == 0) { // add the first point
-	px [0] = 0;
-	py [0] = 0;
-	pz [0] = 0;
-	np++;
+	glutPostRedisplay();
+}
+
+void Zoom(int x, int y){
+	float zoom;
+	zoom = (float) ((y - old_y) * DEGREE_TO_RAD);
+	old_y = y;
+	switch(LOCAL_MyCamera->camMovimiento){
+	case CAM_CHECK:
+		if (LOCAL_MyCamera->camAperture + zoom > (5 * DEGREE_TO_RAD) &&
+			LOCAL_MyCamera->camAperture + zoom < 175 * DEGREE_TO_RAD)
+			LOCAL_MyCamera->camAperture=LOCAL_MyCamera->camAperture + zoom;
+		break;
 	}
-	px [np] = m[0] * px [0] + m[4] * py [0] + m[8] * pz [0] + m[12];
-	py [np] = m[1] * px [0] + m[5] * py [0] + m[9] * pz [0] + m[13];
-	pz [np] = m[2] * px [0] + m[6] * py [0] + m[10] * pz [0] + m[14];
-	printf ("Point %i: %f \t%f \t%f \n",
-	np, px[np],py[np],pz[np]);
-	np++;
+	glutPostRedisplay();
+}
+void goAhead(int x, int y){
+	float rotacion_x, avance_y;
+	avance_y = (float)(y - old_y) / 10;
+	rotacion_x = (float)(old_x - x) * DEGREE_TO_RAD / 5;
+	YawCamera( LOCAL_MyCamera, rotacion_x );
+	freeCamera( LOCAL_MyCamera, avance_y);
+	old_y = y;
+	old_x = x;
+	glutPostRedisplay();
 }
 
-void displayTrace() {
-	int i;
-	glColor3f(0.0,0.0,0.0) ;
-	glBegin(GL_LINE_STRIP);
-	// glBegin(GL_QUAD_STRIP);
-	for (i = 0; i < np; i++) {
-	glVertex3f (px[i],py[i],pz[i]);
+void mouse(int button, int state, int x, int y){
+	old_x = x;
+	old_y = y;
+	switch(button){
+	case GLUT_LEFT_BUTTON:
+		switch(LOCAL_MyCamera->camMovimiento){
+		case CAM_CHECK:
+			if (state == GLUT_DOWN) glutMotionFunc(Zoom);
+			if (state == GLUT_UP){
+				glutPassiveMotionFunc(Check);
+				glutMotionFunc(NULL);
+			}
+			break;
+		case CAM_PASEAR:
+			if (state == GLUT_DOWN) glutMotionFunc(goAhead);
+			if (state == GLUT_UP) glutMotionFunc(NULL);
+			break;
+		}
+		break;
+	case GLUT_RIGHT_BUTTON:
+		if (state == GLUT_DOWN) ;
+		break;
+	default:
+		break;
 	}
-	glEnd();
+	glutPostRedisplay();
 }
 
-
-int main(int argc, char** argv) {
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
-	glutInitWindowSize(512, 512);
-	glutInitWindowPosition(20, 20);
-	glutCreateWindow("csunsa");
-	glutDisplayFunc(display);
-
-	glutReshapeFunc(reshape);
-	glutKeyboardFunc(keyboard);
-
-	glutMainLoop();
-
-	// glMatrixMode(GL_MODELVIEW);
-	// glPushMatrix();
-	// glLoadIdentity();
-	// glGetDoublev (GL_MODELVIEW_MATRIX, mModel);
-	// glPopMatrix();
-
-	return 0;
-}
-
-void keyboard(unsigned char key, int x, int y) {
-
-   switch(key) {
-
-    case 'w' :
-        cout<<"up"<<endl;
-        glTranslatef(0.0, 0.1 ,0.0);
-        addPointToTrace();
-        break;
-    case 'a' :
-        cout<<"left"<<endl;
-        glTranslatef(-0.1, 0.0 ,0.0);
-        addPointToTrace();
-        break;
-    case 's' :
-        cout<<"down"<<endl;
-        glTranslatef(0.0, -0.1, 0);
-        addPointToTrace();
-        break;
-    case 'd' :
-        cout<<"right"<<endl;
-        glTranslatef(0.1, 0 ,0.0);
-        addPointToTrace();
-        break;
-    case 'i' :
-        cout<<"up"<<endl;
-        glRotatef(5.0, 1.0, 0.0, 0.0);
-        addPointToTrace();
-        break;
-    case 'j' :
-        cout<<"left"<<endl;
-        glRotatef(-5.0, 0.0, 1.0, 0.0);
-        addPointToTrace();
-        break;
-    case 'k' :
-        cout<<"down"<<endl;
-        glRotatef(-5.0, 1.0, 0.0, 0.0);
-        addPointToTrace();
-        break;
-    case 'l' :
-        cout<<"right"<<endl;
-        glRotatef(5.0, 0.0, 1.0, 0.0);
-        addPointToTrace();
-        break;
-    case '+' :
-        glScalef(2,2,2);
-        break;
-
-    case '-' :
-        glScalef(0.5,0.5,0.5);
-        break;
-    }
-    glutPostRedisplay();
-}
-
-void reshape(int width, int height) {
-	glViewport(0, 0, width, height);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(60.0, (GLfloat)height / (GLfloat)width, 1.0, 128.0);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
-	gluLookAt(0.0, 1.0, 3.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-}
-
-void display(void) {
-	glClearColor(1.0, 1.0, 1.0, 0.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glPushMatrix();
-	glMultMatrixd(mModel);
-
-	glPopMatrix();
-	glColor3f(1.0,0.0,0.0);
-	draw();
-	// glutWireTorus(0.25,0.75, 28, 28);
-	glColor3f(0.0,0.0,1.0) ;
-	glutWireCube(.60) ;
-	displayTrace();
+void display()
+{
+	glClearColor(1.0,1.0,1.0,0.0);
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+	glColor3f(0.0,0.0,0.0);
+	glutWireTorus(0.05,0.15,20,20);
 	glutSwapBuffers();
 }
-
-// void display(void) {
-// 	glClearColor(1.0, 1.0, 1.0, 0.0);
-// 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-// 	glColor3f(1.0,0.0,0.0);
-// 	draw();
-// 	// glutWireTorus(0.25,0.75, 28, 28);
-// 	glColor3f(0.0,0.0,1.0) ;
-// 	glutWireCube(.60) ;
-// 	glutSwapBuffers();
-// }
-
-void turtle(int sides,float radio,int x,int y) {
-
-	std::vector<float> point_x;
-    std::vector<float> point_y;
-    float PI = 3.14159f;
-    float step = (2 * PI )/sides;
-
-    for (int i =0; i < sides; i++) {
-		point_x.push_back(x+radio*cos(2*PI*i/sides));
-		point_y.push_back(y+radio*sin(2*PI*i/sides));
-    }
-
-    point_x.push_back(point_x[0]);
-    point_y.push_back(point_y[0]);
-
-    glBegin(GL_LINES);
-    for(int  i= 0; i < point_x.size()-1; ++i) {
-        glVertex2f(point_x[i],point_y[i]);
-        glVertex2f(point_x[i+1],point_y[i+1]);
-    }
-    glEnd();
+void reshape(int width,int height)
+{
+	glViewport(0,0,width,height);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(10.0,(GLfloat)height/width,1.0,128.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(0.0,1.0,3.0,0.0,0.0,0.0,0.0,1.0,0.0);
 }
 
-void draw() {
-	glClear(GL_COLOR_BUFFER_BIT);
-	turtle(30,1,0,0);
-	turtle(30,0.5,0,1);
-	turtle(30,0.4,1,1);
-	turtle(30,0.4,1,-1);
-	turtle(30,0.4,-1,1);
-	turtle(30,0.4,-1,-1);
-	glFlush();
+int main(int argc,char** argv)
+{
+	LOCAL_MyCamera = CreatePositionCamera(0.0f, 1.0f, -3.0f);
+	glutInit(&argc,argv);
+	glutInitDisplayMode(GLUT_RGB|GLUT_DEPTH|GLUT_DOUBLE);
+	glutInitWindowSize(512,512);
+	glutInitWindowPosition(20,20);
+	glutCreateWindow("CSUNSA");
+	glutKeyboardFunc(SpecialKey);
+	glutDisplayFunc(display);
+	glutReshapeFunc(reshape);
+	glutPassiveMotionFunc(MouseMotion);
+	glutMainLoop();
+	return 0;
 }

@@ -44,6 +44,7 @@
 			<Add library="gdi32" />
 			<Add directory="C:/Program Files (x86)/CodeBlocks/MinGW/lib" />
 		</Linker>
+		<Unit filename="include/Camera.h" />
 		<Unit filename="include/Circunferencia.h" />
 		<Unit filename="include/Elipse.h" />
 		<Unit filename="include/Hiperbola.h" />
@@ -51,7 +52,11 @@
 		<Unit filename="include/Poligono.h" />
 		<Unit filename="include/PoligonoRegular.h" />
 		<Unit filename="include/Tortuga.h" />
+		<Unit filename="include/UI_primitivas.h" />
+		<Unit filename="include/vector_tools.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Camera.cpp" />
+		<Unit filename="src/vector_tools.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
