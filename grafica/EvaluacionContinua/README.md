@@ -6,7 +6,7 @@
 #traslacion del póligono 
 ![Screenshot](https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/traslacionb.PNG)
 
-#rotacion de un póligono en base a  1 punto 
+#rotacion del póligono en base a  1 punto 
 ![Screenshot](https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/rotaciona.PNG)
 
 #escalado del póligono 
