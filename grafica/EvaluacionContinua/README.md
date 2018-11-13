@@ -12,3 +12,5 @@ https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/Evaluac
 
 traslacion
 https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/traslacion.PNG
+
+![Alt text](relative/C:\Users\Z\Documents\GitHub\Computacion_Grafica\grafica\EvaluacionContinua/to/escalado.png?raw=true "Title")
