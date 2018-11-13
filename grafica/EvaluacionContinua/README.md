@@ -1,6 +1,4 @@
-# Computacion Grafica resultados de dibujo de poligonos por medio de la linea del punto medio 
-# rotacion ,traslacion , escalado, y rrelleando de poligonos con los algoritmos
-# vistos en clase
+# Computacion Grafica resultados de dibujo de poligonos por medio de la linea del punto medio rotacion ,traslacion , escalado, y rrelleando de poligonos con los algoritmos vistos en clase
 
 escalado de 1 poligono
 https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/escalado.PNG
