@@ -1,4 +1,4 @@
-# Computacion gráfica :resultados del dibujo de polígonos por medio del algoritmo de la linea del punto medio y rotación ,traslación , escalado, y rrellenado de poligonos con los algoritmo scann fill.
+# Computacion gráfica :resultados del dibujo de polígonos por medio del algoritmo de la linea del punto medio y rotación ,traslación , escalado, y rellenado de poligonos con el algoritmo scan fill.
 rotación, traslación , escalado  realizado con matrices.
 
 #grafico de póligono cualquiera
