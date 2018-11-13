@@ -13,4 +13,4 @@ https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/Evaluac
 traslacion
 https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/traslacion.PNG
 
-![Screenshot](escalado.png)
+![Screenshot](https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/poligono.PNG)
