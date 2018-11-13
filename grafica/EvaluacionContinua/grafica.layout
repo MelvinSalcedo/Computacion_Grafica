@@ -2,11 +2,6 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="include\PintarPoligono.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1484" topLine="37" />
-		</Cursor>
-	</File>
 	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1079" topLine="41" />
@@ -15,14 +10,22 @@
 			<Collapse line="66" />
 		</Folding>
 	</File>
-	<File name="include\Elipse.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\Transformaciones.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="833" topLine="33" />
+			<Cursor1 position="4758" topLine="45" />
 		</Cursor>
+		<Folding>
+			<Collapse line="47" />
+			<Collapse line="65" />
+			<Collapse line="83" />
+			<Collapse line="104" />
+			<Collapse line="118" />
+			<Collapse line="139" />
+		</Folding>
 	</File>
-	<File name="include\MousePosition.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\PintarPoligono.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="23" topLine="0" />
+			<Cursor1 position="1484" topLine="37" />
 		</Cursor>
 	</File>
 	<File name="include\PoligonoRegular.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -39,17 +42,14 @@
 			<Collapse line="57" />
 		</Folding>
 	</File>
-	<File name="include\Transformaciones.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\MousePosition.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4758" topLine="45" />
+			<Cursor1 position="23" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="47" />
-			<Collapse line="65" />
-			<Collapse line="83" />
-			<Collapse line="104" />
-			<Collapse line="118" />
-			<Collapse line="139" />
-		</Folding>
+	</File>
+	<File name="include\Elipse.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="833" topLine="33" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
