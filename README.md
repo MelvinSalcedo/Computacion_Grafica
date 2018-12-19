@@ -2,15 +2,7 @@
 # rotacion ,traslacion , escalado, y rrelleando de poligonos con los algoritmos
 # vistos en clase
 
-escalado de 1 poligono
-https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/escalado.PNG
+ESCANER 3D:
 
-
-dibujado de un poligono y pintado
-https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/poligono.PNG
-
-rotacion de un poligono en base a  1 punto 
-https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/rotacion.PNG
-
-traslacion
-https://github.com/MelvinSalcedo/Computacion_Grafica/blob/master/grafica/EvaluacionContinua/traslacion.PNG
+SALCEDO ALMIORN MELVIN DAVID
+GUTIERREZ SALAZAR ENRIQUE ALONZO
