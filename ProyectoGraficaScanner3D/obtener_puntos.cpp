@@ -24,18 +24,24 @@ public:
 };
 
 
-void obtener_puntos::obtener_xyz(int i, int j,int e){
+void obtener_puntos::obtener_xyz(int H, int W,int e){
 
-    e*=0.4;
-    float x = i;
-    float y = j;
-    float z = x;
+    e*=0.5;
+    //cout<<"e = "<<e<<" ";
 
-    float d = (e-j);
+    float x;
+    float y;
+    float z=H/3;
 
-    x = d * cos (angle);
-    y = d * sin (angle);
+    float r=(e-W);
+    cout<<"r= "<<r<< " e=" <<e<< " W=" <<W<<endl;
+    
+    x = r * cos (angle);
+    y = r * sin (angle);
     cont++;
+    
+    
+
     std::ofstream archivo ("nube_puntos.txt" , std::fstream::app);
     //std::ofstream archivo_opengl ("nube_puntos.txt" , std::fstream::app);
     int contador_lineas=0;
@@ -56,7 +62,7 @@ void obtener_puntos::ejecutar(){
       // y lo guardamos en img_destino
       cvtColor(img_origen, img_destino, CV_BGR2GRAY);
       Size tam_imagen = img_destino.size();
-      int ejeZ=(tam_imagen.width)/2;
+      int e=(tam_imagen.width)/2;
       //cout<<"tam_imagen.height = "<<tam_imagen.height<<" "<<tam_imagen.width<<endl;
       Vec3f intensity;
       float r,g,b,prom;
@@ -76,13 +82,13 @@ void obtener_puntos::ejecutar(){
             //cout<<"x "<<i<<" "<<j<<" r = "<<r<<" "<<"g = "<<g<<" "<<"b = "<<b<<endl;  
             //cout<<"axis "<<i<<" "<<j;
 
-            obtener_xyz(i,j,ejeZ);
+            obtener_xyz(i,j,e);
             break;
           }
         }
         //cout<<"\n"<<endl;
       }
-    //cout<<"angulo "<<angle<<endl;
+    cout<<"----------------------------------------------------"<<endl;
     angle+=5;
   }
   std::cerr<< cont << std::endl; 

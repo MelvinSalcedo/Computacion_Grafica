@@ -44,14 +44,14 @@ int main(int argc, char *argv[]) {
 	char key = 0;
 
 
-    TheVideoCapturer.open("http://192.168.1.46:8080/video?x.mjpeg");
+    TheVideoCapturer.open("http://192.168.43.1:8080/video?x.mjpeg");
     //TheVideoCapturer.open("http://10.42.0.199:8080/video?x.mjpeg");
 
     if (!TheVideoCapturer.isOpened()) {
     	std::cerr<<"\n\nConexion no encontrada con el dispositivo\n\n"<<std::endl;
     	return -1;
     }
-
+    //tomar_foto();
   	std::thread fotografo;
   	fotografo=std::thread(tomar_foto);
   	

@@ -29,7 +29,7 @@ public:
   string nombre_imagen;
   Obtener_contornos(string name_image){
     nombre_imagen=name_image;
-    img_origen = cv::imread("Images2/"+nombre_imagen+".png");
+    img_origen = cv::imread("images/"+nombre_imagen+".png");
     img_destino;
     cvtColor(img_origen, img_destino, CV_BGR2GRAY);
   }
