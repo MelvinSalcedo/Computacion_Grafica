@@ -1,6 +1,8 @@
 
 
-#ESCANER 3D:
+ESCANER 3D
+
+integrantes
 
 - SALCEDO ALMIORN MELVIN DAVID
 
